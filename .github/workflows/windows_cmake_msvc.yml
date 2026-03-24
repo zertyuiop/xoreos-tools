@@ -39,8 +39,9 @@ jobs:
         configurePreset: ninja-multi-vcpkg
         buildPreset: ninja-multi-vcpkg-debug
         testPreset: ninja-multi-vcpkg-debug
-    - name: Upload build artifacts
+    - name: Upload vcpkg log
+      if: failure()
       uses: actions/upload-artifact@v4
       with:
-        name: my-artifacts
-        path: ${{ github.workspace }}/*
+        name: vcpkg-log
+        path: builds/ninja-multi-vcpkg/vcpkg-manifest-install.log
