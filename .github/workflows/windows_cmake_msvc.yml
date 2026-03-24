@@ -39,3 +39,8 @@ jobs:
         configurePreset: ninja-multi-vcpkg
         buildPreset: ninja-multi-vcpkg-debug
         testPreset: ninja-multi-vcpkg-debug
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: my-artifacts
+        path: ${{ github.workspace }}/*
