@@ -31,19 +31,6 @@ jobs:
       with:
         vcpkgGitCommitId: 62159a45e18f3a9ac0548628dcaf74fcb60c6ff9
         vcpkgJsonGlob: vcpkg.json
-
-    - name: Run CMake, with vcpkg stage, generate, build and test
-      uses: lukka/run-cmake@v10
-      id: run_cmake
-      with:
-        configurePreset: ninja-multi-vcpkg
-        buildPreset: ninja-multi-vcpkg-debug
-        testPreset: ninja-multi-vcpkg-debug
-    - name: Upload debug
-      uses: actions/upload-artifact@v4
-      with:
-        name: debug
-        path: builds/**
     - name: Run CMake, with vcpkg stage, generate, build and test
       uses: lukka/run-cmake@v10
       id: run_cmake_rel
@@ -55,4 +42,16 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: release
+        path: builds/**
+    - name: Run CMake, with vcpkg stage, generate, build and test
+      uses: lukka/run-cmake@v10
+      id: run_cmake
+      with:
+        configurePreset: ninja-multi-vcpkg
+        buildPreset: ninja-multi-vcpkg-debug
+        testPreset: ninja-multi-vcpkg-debug
+    - name: Upload debug
+      uses: actions/upload-artifact@v4
+      with:
+        name: debug
         path: builds/**
