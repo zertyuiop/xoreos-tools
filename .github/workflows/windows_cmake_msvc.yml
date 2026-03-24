@@ -39,9 +39,20 @@ jobs:
         configurePreset: ninja-multi-vcpkg
         buildPreset: ninja-multi-vcpkg-debug
         testPreset: ninja-multi-vcpkg-debug
-    - name: Upload vcpkg log
-      if: failure()
+    - name: Upload debug
       uses: actions/upload-artifact@v4
       with:
-        name: vcpkg-log
-        path: builds/ninja-multi-vcpkg/vcpkg-manifest-install.log
+        name: debug
+        path: builds/**
+    - name: Run CMake, with vcpkg stage, generate, build and test
+      uses: lukka/run-cmake@v10
+      id: run_cmake_rel
+      with:
+        configurePreset: ninja-multi-vcpkg
+        buildPreset: ninja-multi-vcpkg-release
+        testPreset: ninja-multi-vcpkg-release
+    - name: Upload release
+      uses: actions/upload-artifact@v4
+      with:
+        name: release
+        path: builds/**
