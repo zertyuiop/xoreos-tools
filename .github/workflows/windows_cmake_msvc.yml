@@ -29,6 +29,7 @@ jobs:
       uses: lukka/run-vcpkg@v11
       id: run_vcpkg
       with:
+        vcpkgGitCommitId: ed8445dd2a9ba44e0e3ace4e952b2e33130082d9
         vcpkgJsonGlob: vcpkg.json
 
     - name: Run CMake, with vcpkg stage, generate, build and test
